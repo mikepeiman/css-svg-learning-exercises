@@ -3,6 +3,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
 }
 
 .block-container {
@@ -21,14 +22,17 @@ body {
   position: absolute;
   bottom: 0;
   height: 30%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.75);
   color: white;
-  text-shadow: 1px 1px 5px 5px rgba(0,0,0,1);
+  text-shadow: 1px 1px rgba(0,0,0,1);
   opacity: 1;
   transition: all .5s;
   transform: translateY(100%);
 }
 h2 {
+  font-size: 2em;
+}
+p {
   font-size: 1.25em;
 }
 .block-container img {
@@ -38,19 +42,21 @@ h2 {
   padding: 0;
   margin: 0;
   max-height: 100%;
+  opacity: 0.65;
   // margin-top: 2em;
 }
 .image-figure {
   position: relative;
   height: 100%;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,1);
+  transition: all .5s;
 }
 .image-figure .caption {
   width: calc(100% - 1em);
-  padding: 0 0 0 1em;
+    padding: 0 0 0 1em;
 }
 .block-container:hover {
-  background: rgba(0,0,0,0.5);
+
 }
 .block-container:hover .caption {
   transform: translateY(0%);
@@ -59,17 +65,15 @@ h2 {
 .block-container:hover img {
   transform: translateY(-30%);
   // z-index: 1;
+  opacity: 1;
+  transition: all .5s;
 }
 .block-container:hover .image-figure {
-  background: rgba(0,0,0,0);
+  background: rgba(0,0,0,.25);
 }
 .caption:hover {
   opacity: 1;
 }
-.image-figure:hover + img {
-  transform: scale(1.6) rotate(30deg);
-}
-
 .caption:hover:nth-child(n) {
   padding: 0 2em;
   width: calc(100% - 2em);
