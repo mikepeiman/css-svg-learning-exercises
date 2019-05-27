@@ -37,13 +37,11 @@ p {
 }
 .block-container img {
   width: 100%;
-  // z-index: -1;
   transition: all .5s;
   padding: 0;
   margin: 0;
   max-height: 100%;
   opacity: 0.65;
-  // margin-top: 2em;
 }
 .image-figure {
   position: relative;
@@ -60,11 +58,9 @@ p {
 }
 .block-container:hover .caption {
   transform: translateY(0%);
-  // width: 75%;
 }
 .block-container:hover img {
   transform: translateY(-30%);
-  // z-index: 1;
   opacity: 1;
   transition: all .5s;
 }
@@ -78,7 +74,7 @@ p {
   padding: 0 2em;
   width: calc(100% - 2em);
 }
-// **************************************
+/* // **************************************
 // If I just want it to fade in directly, use this below.
 // I prefer the fade in + slide in with the above, because the padding and width are
 // included in the "transition: all"
@@ -87,4 +83,20 @@ p {
 //   padding: 0 2em;
 //   width: calc(100% - 2em);
 // }
-// **************************************
+// ************************************** */
+
+svg {
+  background: rgba(50,75,100,0.15);
+  height: 80vh;
+  width: 80vw;
+  margin: 10vh 10vw;
+  transition: all .25s;
+}
+.radial-lines {
+  opacity: 0.1;
+  transition: opacity .25s, transform .75s;
+}
+svg:hover .radial-lines {
+  transform: rotate(720deg);
+  opacity: 1;
+}

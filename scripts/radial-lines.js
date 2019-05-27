@@ -1,3 +1,5 @@
+// import Color from './../node_modules/color/index.js';
+
 // let trigger = document.querySelector('#timing-function-trigger')
 // trigger.addEventListener('click', triggerTransitions)
 
@@ -7,6 +9,11 @@
 
 // triggerTransitions();
 // const Raphael = import('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js');
+
+// var Color = require('color');
+require(['Color'], function(color) {
+
+})
 
 console.log('testing console')
 
@@ -33,7 +40,7 @@ function setLine(el, startX, endX, startY, endY, strokeColor, strokeWidth, lineC
   line.setAttribute('stroke-linecap', lineCap);
 }
 function setLineAnonymous(startX, endX, startY, endY, strokeColor, strokeWidth, lineCap) {
-  let svg = document.querySelector('#svgLines')
+  let svg = document.querySelector('.radial-lines')
   let line = document.createElementNS("http://www.w3.org/2000/svg","line");
   line.setAttribute('x1', startX);
   line.setAttribute('x2', endX);
@@ -42,6 +49,7 @@ function setLineAnonymous(startX, endX, startY, endY, strokeColor, strokeWidth, 
   line.setAttribute('stroke', strokeColor);
   line.setAttribute('stroke-width', strokeWidth);
   line.setAttribute('stroke-linecap', lineCap);
+  // add in a class and id attribute, which will be added with variables in the makeRadiatingLines funtion below
   svg.appendChild(line)
 }
 
@@ -56,14 +64,18 @@ function getDegree(numberOfPointsOnCircle) {
 }
 
 
-function makeRadiatingLines(numberOfLines, radiusStart, radiusEnd, startColor, strokeWidth, lineCap) {
+function makeRadiatingLines(numberOfLines, radiusStart, radiusEnd, colors, strokeWidth, lineCap) {
   console.log('makeRadiatingLines called')
   let lineArray = []
-  function setColor(startColor) {
-    return startColor 
+  function setColor(colors) {
+    return colors
+    
+    
+
+    line.setAttribute('stroke', strokeColor);
   }
-  let x,
-      y,
+  let x1,x2,
+      y1,y2,
       increase = Math.PI * 2 / numberOfLines,
       angle = 0
 
@@ -72,20 +84,20 @@ function makeRadiatingLines(numberOfLines, radiusStart, radiusEnd, startColor, s
   for(let i = 0; i <= numberOfLines; i++) {
     console.log(i)    
     let line = {}
-    x1 = radiusStart * Math.cos( angle ) ;
-    y1 = radiusStart * Math.sin( angle ) ;
-    x2 = radiusEnd * Math.cos( angle ) ;
-    y2 = radiusEnd * Math.sin( angle ) ;
+    x1 = radiusStart * Math.cos( angle )
+    y1 = radiusStart * Math.sin( angle )
+    x2 = radiusEnd * Math.cos( angle )
+    y2 = radiusEnd * Math.sin( angle )
     line.startX = x1
     line.endX = x2
     line.startY = y1
     line.endY = y2
-    line.strokeColor = startColor
+    line.strokeColor = colors
     line.strokeWidth = strokeWidth
     line.lineCap = lineCap
     console.log(line)
     lineArray.push(line)
-    angle += increase;
+    angle += increase
   }
 
   lineArray.forEach(line => {
@@ -94,6 +106,11 @@ function makeRadiatingLines(numberOfLines, radiusStart, radiusEnd, startColor, s
     setLineAnonymous(line.startX, line.endX, line.startY, line.endY, line.strokeColor, line.strokeWidth, line.lineCap)
   })
 }
+
+
+makeRadiatingLines(25, 150, 175, "hsla(240,100%,50%,1)", "15px", "round")
+
+// makeRadiatingLines(25, 150, 175, {start: }, "15px", "round")
 
 // var stage = document.querySelector('.stage'),
 //     plots = 10,
@@ -111,15 +128,3 @@ function makeRadiatingLines(numberOfLines, radiusStart, radiusEnd, startColor, s
 //   p.position( x,y );
 //   angle += increase;
 // }
-
-
-// setLineAnonymous(60, 100, 0, 50, "#ad3dfd", "5px", "round")
-// setLineAnonymous(70, 110, 0, 60, "#ad3dfd", "5px", "round")
-// setLineAnonymous(80, 120, 0, 70, "#ad3dfd", "5px", "round")
-makeRadiatingLines(25, 150, 175, "#ad3dfd", "15px", "round")
-
-// setRect("#rect1", "100", "100", "300","300", "#aa33ff", "#aaff33", "10px")
-// setRect("#rect2", "300", "300", "300","300", "#aa33ff", "#aaff33", "10px")
-// setLine('#line1','0','100','50','150','green','20px','round')
-// setLineAnonymous('200','300','150','400','red','6px','round')
-// setLineAnonymous('250','350','150','400','red','6px','round')
